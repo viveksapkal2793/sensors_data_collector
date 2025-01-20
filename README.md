@@ -77,6 +77,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-For any inquiries or support, please contact [viveksapkal2003@gmail.com](mailto:viveksapkal2003@gmail.com).
+For any inquiries or support, please contact [viveksapkal2003@gmail.com](mailto:viveksapkal2003@gmail.com) OR [praveenola3420@gmail.com](mailto:praveenola3420@gmail.com) 
 []()
 []()
+
+## 🔗 Links
+[![https://www.linkedin.com/in/praveen-ola-991a66256?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/praveen-ola-991a66256?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app) 
+
+[![https://github.com/Praveenola](https://img.shields.io/badge/github-0A66C2?style=for-the-badge&logo=github&logoColor=black)](https://github.com/Praveenola)
+
