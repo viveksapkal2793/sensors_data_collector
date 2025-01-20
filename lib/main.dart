@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/services.dart';
-// import 'package:http/http.dart' as http;
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:sensors_data_collector/acc_gyro_data.dart';
@@ -8,7 +8,7 @@ import 'package:sensors_plus/sensors_plus.dart';
 import 'accelerometer_data.dart';
 import 'gyroscope_data.dart';
 import 'plotting.dart';
-// import 'dart:convert';
+import 'dart:convert';
 import 'location.dart';
 import 'package:battery_info/battery_info_plugin.dart';
 import 'dart:io';
@@ -290,6 +290,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text('Data saved to CSV')),
+                      );
+                      
+                      await sendDataToBackend(_accGyroData); // Send data to backend
+                      
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Data sent to backend')),
                       );
 
                       setState(() {
@@ -1269,7 +1275,7 @@ class _MyHomePageState extends State<MyHomePage> {
           .toList();
     }
 
-    print("locations: $locations");
+    // print("locations: $locations");
 
     final gpsData = locations.map((data) => data.toJson()).toList();
     final accelerometerValues = getAccelerometerJsonData();
@@ -1294,6 +1300,33 @@ class _MyHomePageState extends State<MyHomePage> {
       gyroscopeValues_for_turning,      
       gpsData,
     );
+  }
+
+  Future<void> sendDataToBackend(List<AccGyroData> accgyrodata) async {
+    final url = Uri.parse('http://10.0.2.2:8000/sensors_app/receive-data/'); // Replace with your Django backend URL
+    final headers = {'Content-Type': 'application/json'};
+    
+    List<Map<String, dynamic>> getAccGyroJsonData() {
+      return _accGyroData
+          .map<Map<String, dynamic>>((data) => data.toJson())
+          .toList();
+    }
+    final accGyroValues = getAccGyroJsonData();
+    print("accgyrodata: $accGyroValues");
+    
+    // final body = jsonEncode({'data': accgyrodata.map((data) => data.toJson()).toList()});
+    final body = jsonEncode({'data': accGyroValues});
+
+    try {
+      final response = await http.post(url, headers: headers, body: body);
+      if (response.statusCode == 200) {
+        print('Data sent successfully');
+      } else {
+        print('Failed to send data: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error sending data: $e');
+    }
   }
 
   // printing_all_data( ) async {
