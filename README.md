@@ -2,6 +2,8 @@
 
 Sensors Data Collector is a Flutter application designed to collect data from various IMU sensors such as accelerometer, gyroscope, and GPS. This application is useful for gathering sensor data for analysis, research, or any other purpose that requires precise motion and location tracking.
 
+- [Click here to see demo](https://drive.google.com/file/d/1Rfh5FvCvFvO-ZAD1P9CBySikk-pXowVj/view)
+
 ## Features
 
 - Collect data from accelerometer, gyroscope, and GPS sensors.
